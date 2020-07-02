@@ -37,17 +37,17 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_play);
 
         txtPlayer = findViewById(R.id.txtPlayer);
 
         caroViewModel = new ViewModelProvider(this).get(CaroViewModel.class);
-        if(caroViewModel.getCurrent().getValue()){
+        if(caroViewModel.getCurrent(true).getValue()){
             txtPlayer.setText("Đến lượt đi của O");
         }else {
             txtPlayer.setText("Đến lượt đi của X");
         }
-        caroViewModel.getCurrent().observe(this, coCaro -> {
+        caroViewModel.getCurrent(true).observe(this, coCaro -> {
             if(coCaro){
                 txtPlayer.setText("Đến lượt đi của O");
             }else {
@@ -74,10 +74,10 @@ public class PlayActivity extends AppCompatActivity {
                 final int finalI = i;
                 final int finalJ = j;
                 textView.setOnClickListener(v -> {
-                    if(arrayBanCo[finalI][finalJ] != 0){
+                    if(arrayBanCo[finalI][finalJ] != 0 || caroViewModel.getIsWin().getValue()){
                         return;
                     }
-                    if(caroViewModel.getCurrent().getValue()){
+                    if(caroViewModel.getCurrent(true).getValue()){
                         ((TextView) v).setText("O");
                         ((TextView) v).setTextColor(O_COLOR);
                         arrayBanCo[finalI][finalJ] = 1;
@@ -86,7 +86,8 @@ public class PlayActivity extends AppCompatActivity {
                         arrayBanCo[finalI][finalJ] = 2;
                     }
                     if(checkWin(finalI, finalJ)){
-                        Toast.makeText(PlayActivity.this, (!caroViewModel.getCurrent().getValue() ? "O": "X") + " đã win", Toast.LENGTH_LONG).show();
+                        Toast.makeText(PlayActivity.this, (caroViewModel.getCurrent(true).getValue() ? "O": "X") + " đã win", Toast.LENGTH_LONG).show();
+                        caroViewModel.setWin(true);
                     }
                     caroViewModel.addBuocDi(finalI, finalJ);
                 });
@@ -199,6 +200,7 @@ public class PlayActivity extends AppCompatActivity {
             arrayTVBanCo[remove.getX()][remove.getY()].setText("");
             arrayBanCo[remove.getX()][remove.getY()] = 0;
             caroViewModel.switchCurrent();
+            caroViewModel.setWin(false);
         }
     }
 

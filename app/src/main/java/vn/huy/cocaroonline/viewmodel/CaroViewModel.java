@@ -14,6 +14,7 @@ import vn.huy.cocaroonline.model.Postion;
 public class CaroViewModel extends ViewModel {
     private MutableLiveData<List<Postion>> dataBuocDi;
     private MutableLiveData<Boolean> current;
+    private MutableLiveData<Boolean> isWin;
 
     public MutableLiveData<List<Postion>> getBuocDi() {
         if (this.dataBuocDi == null) {
@@ -27,22 +28,35 @@ public class CaroViewModel extends ViewModel {
     public void addBuocDi(int x, int y){
         MutableLiveData<List<Postion>> dataBuocDi = getBuocDi();
         List<Postion> postionList = dataBuocDi.getValue();
-        postionList.add(new Postion(getCurrent().getValue(), x, y));
+        postionList.add(new Postion(getCurrent(true).getValue(), x, y));
         dataBuocDi.setValue(postionList);
         switchCurrent();
     }
 
 
-    public MutableLiveData<Boolean> getCurrent() {
+    public MutableLiveData<Boolean> getCurrent(boolean isDiTruoc) {
         if (current == null) {
             current = new MutableLiveData<>();
-            current.setValue(true);
+            current.setValue(isDiTruoc);
         }
         return current;
     }
 
     public void switchCurrent() {
-        MutableLiveData<Boolean> current = getCurrent();
+        MutableLiveData<Boolean> current = getCurrent(true);
         current.setValue(!current.getValue());
+    }
+
+    public MutableLiveData<Boolean> getIsWin() {
+        if (isWin == null) {
+            isWin = new MutableLiveData<>();
+            isWin.setValue(false);
+        }
+        return isWin;
+    }
+
+    public void setWin(boolean win) {
+        MutableLiveData<Boolean> isWin = getIsWin();
+        isWin.setValue(win);
     }
 }

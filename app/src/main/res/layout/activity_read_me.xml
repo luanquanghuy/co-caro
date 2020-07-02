@@ -5,28 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".activity.ReadMeActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30dp"
-        android:textSize="35sp"
-        android:textColor="#000000"
-        android:textAlignment="gravity"
-        android:layout_weight="1"
-        android:text="@string/read_me"/>
+        android:layout_height="0dp"
+        android:layout_weight="10">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="30dp"
+            android:text="@string/read_me"
+            android:textAlignment="gravity"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+    </ScrollView>
 
     <ImageButton
         android:id="@+id/btnHome"
-        android:layout_gravity="center"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
-        android:scaleType="centerCrop"
         android:background="#9FABF3"
         android:onClick="goHome"
-        android:src="@drawable/home"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/home" />
 
 </LinearLayout>

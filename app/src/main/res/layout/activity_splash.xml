@@ -8,26 +8,40 @@
     android:background="@drawable/background_menu">
 
     <Button
-        android:id="@+id/buttonPlay"
+    android:id="@+id/buttonPlay"
+    android:layout_width="211dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="100dp"
+    android:layout_marginTop="300dp"
+    android:layout_marginEnd="100dp"
+    android:background="@drawable/button_shape"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:onClick="playGame"
+    android:text="Play" />
+
+    <Button
+        android:id="@+id/buttonPlayOnline"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@id/buttonPlay"
+        android:layout_marginTop="25dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="300dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/button_shape"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="playGame"
-        android:text="Play" />
+        android:onClick="playOnlineGame"
+        android:text="Play Online" />
 
     <Button
         android:id="@+id/buttonReadMe"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonPlay"
+        android:layout_below="@id/buttonPlayOnline"
         android:layout_marginTop="25dp"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"

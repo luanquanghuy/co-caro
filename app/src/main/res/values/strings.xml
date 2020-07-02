@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Cờ Caro</string>
-    <string name="read_me">- Trên bàn cờ 30x30 ô vuông. Một người đi X, một người đi O.\n- Khi đến lượt mình, người chơi phải tích vào một ô trên bàn cờ. Người chơi phải tìm cách tích đủ 5 ô theo chiều dọc hoặc chiều ngang hoặc đường chéo thì sẽ thắng.</string>
+    <string name="read_me">- Trên bàn cờ 30x30 ô vuông. Một người đi X, một người đi O.\n- Khi đến lượt mình, người chơi phải tích vào một ô trên bàn cờ. Người chơi phải tìm cách tích đủ 5 ô theo chiều dọc hoặc chiều ngang hoặc đường chéo thì sẽ thắng.\n- Với chế độ 2 người chơi cùng 1 máy có chức năng quay lại bước đi trước.\n- Với chế độ Online bạn không thể đi lại nước đã đi, bạn có thời gian 30s để suy nghĩ nước đi tiếp.</string>
 </resources>

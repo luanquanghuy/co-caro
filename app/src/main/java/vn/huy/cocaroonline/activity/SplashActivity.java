@@ -30,4 +30,8 @@ public class SplashActivity extends AppCompatActivity {
         finish();
         System.exit(0);
     }
+
+    public void playOnlineGame(View view) {
+        startActivity(new Intent(this, PlayOnlineActivity.class));
+    }
 }
