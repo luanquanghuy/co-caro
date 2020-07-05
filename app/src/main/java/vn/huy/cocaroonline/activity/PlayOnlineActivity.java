@@ -105,7 +105,9 @@ public class PlayOnlineActivity extends AppCompatActivity {
                 CaroStatus finalCaroStatus = caroStatus;
                 socket.on(Socket.EVENT_CONNECT, args -> {
                     socket.emit("join", finalCaroStatus.getRoomName());
-                    txtPlayer.setText("Đang kết nối...");
+                    handler.post(()->{
+                            txtPlayer.setText("Đang kết nối...");
+                    });
                 }).
                         on(finalCaroStatus.getRoomName(), args -> {
                             socket.emit(finalCaroStatus.getRoomName() + "connect", "connecting server");
@@ -165,10 +167,10 @@ public class PlayOnlineActivity extends AppCompatActivity {
                                             }
                                             if (code == 0) {
                                                 arrayBanCo[x][y] = 2;
-                                                arrayTVBanCo[x][y].setText("X");
                                                 int finalX = x;
                                                 int finalY = y;
                                                 handler.post(() -> {
+                                                    arrayTVBanCo[finalX][finalY].setText("X");
                                                     caroViewModel.addBuocDi(finalX, finalY);
                                                 });
                                             } else if (code == 1) {
@@ -180,10 +182,10 @@ public class PlayOnlineActivity extends AppCompatActivity {
                                                 });
                                             } else if (code == 2) {
                                                 arrayBanCo[x][y] = 2;
-                                                arrayTVBanCo[x][y].setText("X");
                                                 int finalX = x;
                                                 int finalY = y;
                                                 handler.post(() -> {
+                                                    arrayTVBanCo[finalX][finalY].setText("X");
                                                     caroViewModel.setWin(true);
                                                     caroViewModel.addBuocDi(finalX, finalY);
                                                     Toast.makeText(PlayOnlineActivity.this, "Bạn đã thua", Toast.LENGTH_SHORT).show();
