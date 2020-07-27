@@ -48,10 +48,12 @@ public class PlayActivity extends AppCompatActivity {
             txtPlayer.setText("Đến lượt đi của X");
         }
         caroViewModel.getCurrent(true).observe(this, coCaro -> {
-            if(coCaro){
-                txtPlayer.setText("Đến lượt đi của O");
-            }else {
-                txtPlayer.setText("Đến lượt đi của X");
+            if(!caroViewModel.getIsWin().getValue()) {
+                if (coCaro) {
+                    txtPlayer.setText("Đến lượt đi của O");
+                } else {
+                    txtPlayer.setText("Đến lượt đi của X");
+                }
             }
         });
 
@@ -87,6 +89,7 @@ public class PlayActivity extends AppCompatActivity {
                     }
                     if(checkWin(finalI, finalJ)){
                         Toast.makeText(PlayActivity.this, (caroViewModel.getCurrent(true).getValue() ? "O": "X") + " đã win", Toast.LENGTH_LONG).show();
+                        txtPlayer.setText((caroViewModel.getCurrent(true).getValue() ? "O": "X") + " đã win");
                         caroViewModel.setWin(true);
                     }
                     caroViewModel.addBuocDi(finalI, finalJ);
